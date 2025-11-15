@@ -182,7 +182,3 @@ This project was built in iterative stages, evolving from a simple bot script in
     * A polished header that displays the user's name and an info modal for bot limitations.
 
 ---
-
-## 📄 License
-
-This project is open-source. (Aap yahaan "MIT License" ya kuch aur add kar sakte hain).
