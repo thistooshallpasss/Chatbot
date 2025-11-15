@@ -1,0 +1,75 @@
+{
+    "intents": [
+        {
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "Hello",
+                "Hey",
+                "Kaise ho?",
+                "Good morning",
+                "Namaste"
+            ],
+            "responses": [
+                "Hello!",
+                "Hi there!",
+                "Hey, kaise ho?",
+                "Hi! Aapki kya madad kar sakta hoon?"
+            ]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "Bye",
+                "See you later",
+                "Goodbye",
+                "Chalta hoon",
+                "Alvida"
+            ],
+            "responses": [
+                "Goodbye!",
+                "See you soon!",
+                "Bye! Have a great day."
+            ]
+        },
+        {
+            "tag": "about",
+            "patterns": [
+                "Tum kaun ho?",
+                "What are you?",
+                "Who are you?",
+                "Apne baare mein batao"
+            ],
+            "responses": [
+                "Main ek AI chatbot hoon, ek project ke liye banaya gaya.",
+                "I am a simple chatbot.",
+                "Main aapke sawalon ka jawab dene ke liye yahan hoon."
+            ]
+        },
+        {
+            "tag": "help",
+            "patterns": [
+                "Help",
+                "Madad chahiye",
+                "Can you help me?",
+                "Kya kar sakte ho?"
+            ],
+            "responses": [
+                "Main abhi basic cheezon par hi baat kar sakta hoon. Aap 'hi', 'bye' ya 'about' try kar sakte hain.",
+                "You can ask me who I am or just say hello!"
+            ]
+        },
+        {
+            "tag": "creator",
+            "patterns": [
+                "Tumhe kisne banaya?",
+                "Who made you?",
+                "Who is your creator?"
+            ],
+            "responses": [
+                "Mujhe ek talented developer ne apne project ke liye banaya hai.",
+                "I was built by a student for their project."
+            ]
+        }
+    ]
+}

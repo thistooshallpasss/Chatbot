@@ -1,0 +1,456 @@
+/* --- Basic Reset & Theme Variables --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333;
+    --chat-bg: #f0f2f5;
+    --bot-msg-bg: #e9ecef;
+    --header-bg: #007bff;
+    --header-text: #ffffff;
+    --input-bg: #f9f9f9;
+    --border-color: #ddd;
+    --sidebar-bg: #f8f9fa;
+    --sidebar-text: #212529;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --chat-bg: #242424;
+    --bot-msg-bg: #3a3a3a;
+    --header-bg: #1e1e1e;
+    --header-text: #00aaff;
+    --input-bg: #3a3a3a;
+    --border-color: #555;
+    --sidebar-bg: #1e1e1e;
+    --sidebar-text: #f0f0f0;
+}
+
+/* --- (FIX) Body Styles --- */
+/* Humne yahan se display:flex, align-items, justify-content, aur height hata diya hai */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+        Arial, sans-serif;
+    background-color: var(--chat-bg);
+    color: var(--text-color);
+    transition: background-color 0.2s, color 0.2s;
+    /* Scrollbar ko body se hata dein */
+    overflow: hidden;
+}
+
+/* --- (FIX) Auth Form Styles --- */
+/* Ab auth-container khud apni centering karega */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Yeh poori screen lega */
+    width: 100%;
+    background-color: var(--chat-bg);
+}
+
+.auth-form {
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-form h2 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.auth-button:hover {
+    background-color: #0056b3;
+}
+
+.auth-button:disabled {
+    background-color: #a0cfff;
+    cursor: not-allowed;
+}
+
+.auth-error {
+    color: red;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.auth-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* --- Chat App Layout (Sidebar + Main) --- */
+.app-wrapper {
+    display: flex;
+    width: 100vw;
+    /* Poori screen width */
+    height: 100vh;
+    /* Poori screen height */
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    border-right: 1px solid var(--border-color);
+    padding: 20px;
+    flex-shrink: 0;
+    height: 100%;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    position: absolute;
+    /* Mobile view ke liye */
+    z-index: 10;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.app-container {
+    flex-grow: 1;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* Poori height lein */
+    width: 100%;
+    /* Baki sab reset karein */
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transition: transform 0.3s ease-in-out;
+    /* Yeh sidebar ke piche rahega */
+    position: relative;
+    z-index: 1;
+}
+
+/* Jab sidebar khule, toh chat container ko push karein (Desktop) */
+@media (min-width: 768px) {
+    .sidebar {
+        position: relative;
+        /* Desktop par static rahega */
+    }
+
+    .app-wrapper.sidebar-open .app-container {
+        /* Yeh layout ko tod raha tha, ise hatayein */
+        /* transform: translateX(280px); */
+    }
+
+    .app-wrapper.sidebar-open .sidebar {
+        width: 280px;
+    }
+
+    .sidebar {
+        width: 0;
+        /* By default chupa hua */
+        transform: translateX(0);
+        padding: 0;
+        transition: width 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+    .sidebar.open {
+        width: 280px;
+        padding: 20px;
+    }
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.history-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.history-item {
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.history-item:hover {
+    background-color: var(--bot-msg-bg);
+    opacity: 1;
+}
+
+/* --- (FIX) Header Styles --- */
+.app-header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    display: flex;
+    justify-content: space-between;
+    /* Yeh title ko center mein rakhega */
+    align-items: center;
+    padding: 12px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+    /* Isko shrink na hone dein */
+}
+
+/* Left aur Right sections ko fix width dein */
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-basis: 150px;
+    /* Ek base width dein */
+}
+
+.header-left {
+    justify-content: flex-start;
+}
+
+.header-right {
+    justify-content: flex-end;
+}
+
+.header-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--header-text);
+    margin: 0;
+    flex-grow: 1;
+    /* Yeh bachi hui poori space lega */
+    text-align: center;
+    /* Aur title ko center karega */
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    color: var(--header-text);
+    cursor: pointer;
+    opacity: 0.8;
+    padding: 0;
+    display: flex;
+    /* SVG ko align karne ke liye */
+    align-items: center;
+}
+
+.icon-button:hover {
+    opacity: 1;
+}
+
+.header-auth-button {
+    background: none;
+    border: 1px solid var(--header-text);
+    color: var(--header-text);
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.header-auth-button.signup {
+    background: var(--header-text);
+    color: var(--header-bg);
+}
+
+.header-auth-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.header-auth-button.signup:hover {
+    background-color: #f0f0f0;
+}
+
+.user-name {
+    color: var(--header-text);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+/* --- Chat Window Styles --- */
+.chat-window {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--chat-bg);
+}
+
+.chat-message {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.user {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.bot {
+    background-color: var(--bot-msg-bg);
+    color: var(--text-color);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+/* --- Input Bar Styles --- */
+.input-bar {
+    display: flex;
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    flex-shrink: 0;
+    /* Isko shrink na hone dein */
+}
+
+.input-bar input {
+    flex-grow: 1;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 10px 16px;
+    font-size: 1rem;
+    margin-right: 10px;
+    outline: none;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.input-bar input:focus {
+    border-color: #007bff;
+}
+
+.input-bar button {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.input-bar button:hover {
+    background-color: #0056b3;
+}
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--text-color);
+}
+
+.modal-content ul {
+    padding-left: 20px;
+}
+
+.modal-content p,
+.modal-content ul {
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.modal-close-button {
+    display: block;
+    margin-top: 1.5rem;
+    margin-left: auto;
+    padding: 0.6rem 1rem;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
