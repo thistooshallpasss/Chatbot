@@ -4,7 +4,7 @@ import axios from 'axios';
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
 // Helper function: Token ko headers aur localStorage mein set karein
 const setAuthToken = (token) => {

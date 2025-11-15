@@ -8,7 +8,7 @@ import InfoModal from './components/InfoModal';
 import Sidebar from './components/Sidebar'; // Sidebar import karein
 // App.css ko main.jsx mein move kar diya hai
 
-const API_URL = 'http://localhost:3001/api/chat';
+const API_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3001/api'}/chat`;
 
 function App() {
   const [messages, setMessages] = useState([]);
