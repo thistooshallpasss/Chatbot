@@ -11,7 +11,10 @@ const port = process.env.PORT || 3001;
 
 // Middlewares
 app.use(cors({
-    origin: process.env.FRONTEND_URL // Hum environment variable ka istemal karenge
+    origin: [
+        'https://chatbot-lilac-seven-54.vercel.app', // Aapka Vercel URL
+        'http://localhost:5173'  // Local testing ke liye
+    ]
 }));
 app.use(express.json());
 
