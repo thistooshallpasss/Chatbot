@@ -6,7 +6,7 @@ It's not just a simple bot; it's a complete web application featuring secure use
 
 ## 🚀 Live Demo
 
-**Check out the live application:** **[https://chatbot-lilac-seven-54.vercel.app/](https://chatbot-lilac-seven-54.vercel.app/)**
+**Check out the live application:** **[https://chatbot-git-main-harsh-yadavs-projects-fe403f4d.vercel.app/](https://chatbot-git-main-harsh-yadavs-projects-fe403f4d.vercel.app/)**
 
 *(Note: The backend is hosted on a free Render plan, so it may take 30-60 seconds for the server to "wake up" on the first request.)*
 
@@ -41,17 +41,17 @@ It's not just a simple bot; it's a complete web application featuring secure use
 
 ### 💬 Chat Interface
 
-|       Chat (Light Mode)        |       Chat (Dark Mode)        |
-| :----------------------------: | :---------------------------: |
-| ![Chat Light](IMAGE_LINK_HERE) | ![Chat Dark](IMAGE_LINK_HERE) |
+|               Chat (Light Mode)                |               Chat (Dark Mode)                |
+| :--------------------------------------------: | :-------------------------------------------: |
+| ![Chat Light](frontend/Assets/login_white.png) | ![Chat Dark](frontend/Assets/login_black.png) |
 
 ---
 
 ### 🗂️ Dashboard (History Save)
 
-|           History Sidebar           |        Saved Chat View         |
-| :---------------------------------: | :----------------------------: |
-| ![History Sidebar](IMAGE_LINK_HERE) | ![Saved Chat](IMAGE_LINK_HERE) |
+|                   History Sidebar                    |        Saved Chat View         |
+| :--------------------------------------------------: | :----------------------------: |
+| ![History Sidebar](frontend/Assets/chat_history.png) | ![Saved Chat](IMAGE_LINK_HERE) |
 
 ---
 
