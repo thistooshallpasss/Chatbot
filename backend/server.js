@@ -11,7 +11,8 @@ const port = process.env.PORT || 3001;
 
 app.use(cors({
     origin: [
-        'https://chatbot-lilac-seven-54.vercel.app', // YEH AAPKA SAHI URL HAI
+        // YEH NAYA URL HAI:
+        'https://chatbot-git-main-harsh-yadavs-projects-fe403f4d.vercel.app',
         'http://localhost:5173'
     ]
 }));
