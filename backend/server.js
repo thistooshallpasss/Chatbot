@@ -9,11 +9,10 @@ require('./nlp-manager');
 const app = express();
 const port = process.env.PORT || 3001;
 
-// Middlewares
 app.use(cors({
     origin: [
-        'https://chatbot-lilac-seven-54.vercel.app', // Aapka Vercel URL
-        'http://localhost:5173'  // Local testing ke liye
+        'https://chatbot-lilac-seven-54.vercel.app', // YEH AAPKA SAHI URL HAI
+        'http://localhost:5173'
     ]
 }));
 app.use(express.json());
